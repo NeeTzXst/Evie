@@ -1,12 +1,16 @@
-# Evie Web/App Project<br />
-<b>Software Engineering Kasetsart University Sriracha Campus Projet </b><br />
-<b>Project</b>: Parking reservations and chargers. <br />
-<b>Design and Programing Tools</b>: Figma and Flutter<br />
-<b>Design and Programing</b>: <br />
-Maythaporn Klangburee<br />
-Pattima Sommai<br />
-Pitawat kankaew<br />
-Suphang Kraisopa<br />
-Thanakom Worathanyathorn<br />
-Wipop kornpitak<br />
-Wiyada Kanjanadee<br />
+# google_maps
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
