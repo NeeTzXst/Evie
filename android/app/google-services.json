@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "472057244524",
+    "project_id": "authentication-a6550",
+    "storage_bucket": "authentication-a6550.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472057244524:android:241f255821d1a34b3ea149",
+        "android_client_info": {
+          "package_name": "com.example.google_maps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472057244524-bricffqb78sfmjqcfgt78jb6v8umvi5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB7GlKDhLVuNYWYlkcZwI4o74q4mJ8UJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472057244524-bricffqb78sfmjqcfgt78jb6v8umvi5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
