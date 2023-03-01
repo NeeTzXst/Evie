@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps/Checkout.dart';
+//import 'package:google_maps/Checkout.dart';
 import 'package:google_maps/src/HomePage.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
@@ -23,8 +23,8 @@ class _TimereminingState extends State<Timeremining> {
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         leading: GestureDetector(
           onTap: () {
-            Navigator.of(context)
-                .pop(MaterialPageRoute(builder: ((context) => Map())));
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: ((context) => Map())));
           },
           child: Icon(
             Icons.arrow_back,
@@ -87,11 +87,11 @@ class _TimereminingState extends State<Timeremining> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: ((context) => checkOut()),
-                  ),
-                );
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: ((context) => checkOut()),
+                //   ),
+                // );
               },
               child: Container(
                 width: 150,
