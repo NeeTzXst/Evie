@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps/src/Getdirection.dart';
-import 'package:google_maps/src/Timeremininh.dart';
+import 'package:google_maps/src/Timeremining.dart';
 import 'package:google_maps/src/headerDrawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:flutter_google_places/flutter_google_places.dart';
