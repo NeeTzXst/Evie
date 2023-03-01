@@ -231,7 +231,7 @@ class _Map extends State<Map> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Icon(
-                            Icons.notifications,
+                            Icons.notifications_none_outlined,
                             size: 35,
                             color: Colors.blue,
                           )
