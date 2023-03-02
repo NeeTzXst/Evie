@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps/src/Getdirection.dart';
+import 'package:google_maps/src/SelectCar.dart';
 import 'package:google_maps/src/Timeremining.dart';
 import 'package:google_maps/src/headerDrawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -123,7 +124,6 @@ class _Map extends State<Map> {
                 right: 0,
                 child: GestureDetector(
                   onTap: () {
-                    //_handlePressButton();
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: ((context) => GetDirection()),
@@ -173,33 +173,39 @@ class _Map extends State<Map> {
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 15, right: 15),
-                  child: Container(
-                    width: 45,
-                    height: 45,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              spreadRadius: 1,
-                              blurRadius: 10,
-                              offset: Offset(0, 3)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: ((context) => SelectCar())));
+                },
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 15, right: 15),
+                    child: Container(
+                      width: 45,
+                      height: 45,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                                offset: Offset(0, 3)),
+                          ],
+                          color: Colors.white),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Icon(
+                            Icons.directions_car,
+                            size: 35,
+                            color: Colors.blue,
+                          )
                         ],
-                        color: Colors.white),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Icon(
-                          Icons.directions_car,
-                          size: 35,
-                          color: Colors.blue,
-                        )
-                      ],
+                      ),
                     ),
                   ),
                 ),

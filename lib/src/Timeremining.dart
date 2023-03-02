@@ -45,14 +45,13 @@ class _TimereminingState extends State<Timeremining> {
       ),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              child: Center(
-                child: Image.asset(
-                  'assets/messageImage_1677661037176.jpg',
-                  width: 300,
-                  height: 250,
-                ),
+              child: Image.asset(
+                'assets/messageImage_1677661037176.jpg',
+                width: 300,
+                height: 250,
               ),
             ),
             Container(
