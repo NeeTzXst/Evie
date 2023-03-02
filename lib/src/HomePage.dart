@@ -93,6 +93,7 @@ class _Map extends State<Map> {
             children: [
               Container(
                 child: GoogleMap(
+                  myLocationButtonEnabled: false,
                   myLocationEnabled: true,
                   compassEnabled: false,
                   tiltGesturesEnabled: false,
