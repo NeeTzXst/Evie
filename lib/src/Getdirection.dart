@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_map_polyline_new/google_map_polyline_new.dart';
 import 'package:google_maps/src/HomePage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
@@ -21,7 +24,6 @@ class _GetDirectionState extends State<GetDirection> {
   String _sessionToken = "122344";
   List<dynamic> _placesList = [];
   bool _isVisible = true;
-  final List<Marker> _markers = <Marker>[];
 
   @override
   void initState() {
@@ -32,7 +34,6 @@ class _GetDirectionState extends State<GetDirection> {
   }
 
   void onChange() {
-    // ignore: unnecessary_null_comparison
     if (_sessionToken == null) {
       setState(() {
         _sessionToken = uuid.v4();
@@ -47,7 +48,7 @@ class _GetDirectionState extends State<GetDirection> {
     String baseURL =
         'https://maps.googleapis.com/maps/api/place/autocomplete/json';
     String request =
-        '$baseURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$_sessionToken';
+        '$baseURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$_sessionToken&language=multi';
 
     var response = await http.get(Uri.parse(request));
     //var data = response.body.toString();
@@ -121,6 +122,11 @@ class _GetDirectionState extends State<GetDirection> {
                     _isVisible = true;
                   });
                 },
+                // inputFormatters: [
+                //   FilteringTextInputFormatter.allow(
+                //     RegExp('[ก-๛]+'),
+                //   ),
+                // ],
                 controller: _controller,
                 decoration: InputDecoration(
                   hintText: "Where are you going to?",
@@ -258,9 +264,9 @@ class _GetDirectionState extends State<GetDirection> {
             ),
             ElevatedButton(
               onPressed: () {
-                print("desla ${desla}");
-                print("deslong ${deslong}");
-                print("desLocation ${desLocation}");
+                print("desla $desla");
+                print("deslong $deslong");
+                print("desLocation $desLocation");
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: ((context) => Home()),

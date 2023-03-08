@@ -1,29 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_map_polyline_new/google_map_polyline_new.dart';
 import 'package:google_maps/map/locationDes.dart';
 import 'package:google_maps/src/Getdirection.dart';
 import 'package:google_maps/src/SelectCar.dart';
 import 'package:google_maps/src/Timeremining.dart';
 import 'package:google_maps/src/headerDrawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-// import 'package:flutter_google_places/flutter_google_places.dart';
-// import 'package:google_maps_webservice/places.dart';
-// import 'package:google_api_headers/google_api_headers.dart';
 
-class Map extends StatefulWidget {
-  const Map({super.key});
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<Map> createState() => _Map();
+  State<Home> createState() => _Home();
 }
 
 const kGoogleApiKey = 'AIzaSyACIHi_JOm4JFO5EuUQWZ-vuQE-_9U8m00';
 
-class _Map extends State<Map> {
+class _Home extends State<Home> {
   late GoogleMapController mapController;
 
   final LatLng _center = const LatLng(13.751524063317138, 100.4927341283359);
+
+  LatLng _originLocation = LatLng(desla!, deslong!);
+  LatLng _destinationLocation = LatLng(currentla, currentlong);
+
+  Set<Polyline> polyline = {};
+  List<LatLng> routeCoords = [];
+  GoogleMapPolyline _googleMapPolyline =
+      new GoogleMapPolyline(apiKey: kGoogleApiKey);
+
+  Map<PolylineId, Polyline> _polylines = <PolylineId, Polyline>{};
+
+  PolylinePoints polylinePoints = PolylinePoints();
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -34,14 +45,41 @@ class _Map extends State<Map> {
   final List<Marker> _markers = <Marker>[];
 
   Future<void> desinationLocation() async {
-    print("Home desla ${desla}");
-    print("Home deslong ${deslong}");
-    print("Home desLocation ${desLocation}");
+    // print("Home desla ${desla}");
+    // print("Home deslong ${deslong}");
+    // print("Home desLocation ${desLocation}");
     return _markers.add(Marker(
       markerId: MarkerId("0"),
       position: LatLng(desla!, deslong!),
       infoWindow: InfoWindow(title: desLocation!),
     ));
+  }
+
+  _getPolylinesWithLocation() async {
+    List<LatLng>? _coordinates =
+        await _googleMapPolyline.getCoordinatesWithLocation(
+            origin: _originLocation,
+            destination: _destinationLocation,
+            mode: RouteMode.driving);
+
+    setState(() {
+      _polylines.clear();
+    });
+    _addPolyline(_coordinates);
+  }
+
+  _addPolyline(List<LatLng>? _coordinates) {
+    PolylineId id = PolylineId("1");
+    Polyline polyline = Polyline(
+        polylineId: id,
+        color: Colors.blueAccent,
+        points: _coordinates!,
+        width: 4,
+        onTap: () {});
+
+    setState(() {
+      _polylines[id] = polyline;
+    });
   }
 
   Future<Position> getUserCurrentLocation() async {
@@ -59,7 +97,8 @@ class _Map extends State<Map> {
       (value) async {
         print("My current location");
         print(value.latitude.toString() + " " + value.longitude.toString());
-
+        print("Desination = " + desLocation.toString());
+        print(desla.toString() + " " + deslong.toString());
         currentla = value.latitude;
         currentlong = value.longitude;
 
@@ -76,8 +115,6 @@ class _Map extends State<Map> {
 
         final GoogleMapController controller = await mapController;
 
-        desinationLocation();
-
         controller
             .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
         setState(() {});
@@ -89,6 +126,8 @@ class _Map extends State<Map> {
   void initState() {
     super.initState();
     loadData();
+    desinationLocation();
+    _getPolylinesWithLocation();
   }
 
   @override
@@ -110,9 +149,6 @@ class _Map extends State<Map> {
                 myLocationButtonEnabled: false,
                 myLocationEnabled: true,
                 compassEnabled: false,
-                //scrollGesturesEnabled: false,
-                //zoomGesturesEnabled: false,
-                //tiltGesturesEnabled: false,
                 markers: Set<Marker>.of(_markers),
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
@@ -120,6 +156,7 @@ class _Map extends State<Map> {
                   zoom: 11.0,
                 ),
                 onMapCreated: _onMapCreated,
+                polylines: Set<Polyline>.of(_polylines.values),
               ),
               Align(
                 alignment: Alignment.topLeft,
@@ -281,7 +318,7 @@ class _Map extends State<Map> {
                       );
 
                       CameraPosition cameraPosition = CameraPosition(
-                          zoom: 14,
+                          zoom: 17,
                           target: LatLng(value.latitude, value.longitude));
 
                       final GoogleMapController controller =
