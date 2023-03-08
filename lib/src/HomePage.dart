@@ -1,7 +1,7 @@
-//import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps/map/locationDes.dart';
 import 'package:google_maps/src/Getdirection.dart';
 import 'package:google_maps/src/SelectCar.dart';
 import 'package:google_maps/src/Timeremining.dart';
@@ -33,6 +33,17 @@ class _Map extends State<Map> {
 
   final List<Marker> _markers = <Marker>[];
 
+  Future<void> desinationLocation() async {
+    print("Home desla ${desla}");
+    print("Home deslong ${deslong}");
+    print("Home desLocation ${desLocation}");
+    return _markers.add(Marker(
+      markerId: MarkerId("0"),
+      position: LatLng(desla!, deslong!),
+      infoWindow: InfoWindow(title: desLocation!),
+    ));
+  }
+
   Future<Position> getUserCurrentLocation() async {
     await Geolocator.requestPermission()
         .then((value) {})
@@ -49,6 +60,9 @@ class _Map extends State<Map> {
         print("My current location");
         print(value.latitude.toString() + " " + value.longitude.toString());
 
+        currentla = value.latitude;
+        currentlong = value.longitude;
+
         _markers.add(
           Marker(
             markerId: MarkerId("1"),
@@ -62,6 +76,8 @@ class _Map extends State<Map> {
 
         final GoogleMapController controller = await mapController;
 
+        desinationLocation();
+
         controller
             .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
         setState(() {});
@@ -71,7 +87,6 @@ class _Map extends State<Map> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadData();
   }
@@ -91,20 +106,20 @@ class _Map extends State<Map> {
         body: Container(
           child: Stack(
             children: [
-              Container(
-                child: GoogleMap(
-                  myLocationButtonEnabled: false,
-                  myLocationEnabled: true,
-                  compassEnabled: false,
-                  tiltGesturesEnabled: false,
-                  markers: Set<Marker>.of(_markers),
-                  mapType: MapType.normal,
-                  initialCameraPosition: CameraPosition(
-                    target: _center,
-                    zoom: 11.0,
-                  ),
-                  onMapCreated: _onMapCreated,
+              GoogleMap(
+                myLocationButtonEnabled: false,
+                myLocationEnabled: true,
+                compassEnabled: false,
+                //scrollGesturesEnabled: false,
+                //zoomGesturesEnabled: false,
+                //tiltGesturesEnabled: false,
+                markers: Set<Marker>.of(_markers),
+                mapType: MapType.normal,
+                initialCameraPosition: CameraPosition(
+                  target: _center,
+                  zoom: 11.0,
                 ),
+                onMapCreated: _onMapCreated,
               ),
               Align(
                 alignment: Alignment.topLeft,

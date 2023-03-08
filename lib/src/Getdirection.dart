@@ -256,6 +256,19 @@ class _GetDirectionState extends State<GetDirection> {
                 ),
               ),
             ),
+            ElevatedButton(
+              onPressed: () {
+                print("desla ${desla}");
+                print("deslong ${deslong}");
+                print("desLocation ${desLocation}");
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: ((context) => Map()),
+                  ),
+                );
+              },
+              child: Text("Get Direction"),
+            ),
           ],
         ),
       ),
