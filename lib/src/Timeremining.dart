@@ -24,7 +24,7 @@ class _TimereminingState extends State<Timeremining> {
         leading: GestureDetector(
           onTap: () {
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: ((context) => Map())));
+                MaterialPageRoute(builder: ((context) => Home())));
           },
           child: Icon(
             Icons.arrow_back,

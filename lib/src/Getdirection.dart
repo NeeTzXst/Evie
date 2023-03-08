@@ -74,7 +74,7 @@ class _GetDirectionState extends State<GetDirection> {
         leading: GestureDetector(
           onTap: () {
             Navigator.of(context)
-                .pop(MaterialPageRoute(builder: ((context) => Map())));
+                .pop(MaterialPageRoute(builder: ((context) => Home())));
           },
           child: Icon(
             Icons.arrow_back,
@@ -263,7 +263,7 @@ class _GetDirectionState extends State<GetDirection> {
                 print("desLocation ${desLocation}");
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: ((context) => Map()),
+                    builder: ((context) => Home()),
                   ),
                 );
               },

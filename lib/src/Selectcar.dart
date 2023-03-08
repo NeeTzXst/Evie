@@ -24,7 +24,7 @@ class _SelectCarState extends State<SelectCar> {
             onTap: () {
               Navigator.of(context).pop(
                 MaterialPageRoute(
-                  builder: ((context) => Map()),
+                  builder: ((context) => Home()),
                 ),
               );
             },

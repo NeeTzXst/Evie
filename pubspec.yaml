@@ -31,7 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_maps_flutter: ^2.2.3
+  google_maps_flutter: ^2.2.5
   path_provider: ^2.0.12
   location: ^4.4.0
   flutter_polyline_points: ^1.0.0
@@ -51,10 +51,11 @@ dependencies:
   flutter_geocoder: ^0.2.2-nullsafety
   slide_countdown: ^0.5.0
   google_map_polyline_new: ^0.3.0+2
+  cupertino_icons: ^1.0.2
+  permission: ^0.1.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:

@@ -53,7 +53,7 @@ Widget header(BuildContext context) => Container(
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context)
-                      .pop(MaterialPageRoute(builder: ((context) => Map())));
+                      .pop(MaterialPageRoute(builder: ((context) => Home())));
                 },
                 child: Icon(
                   Icons.arrow_back,

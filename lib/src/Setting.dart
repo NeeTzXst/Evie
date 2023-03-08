@@ -22,7 +22,7 @@ class _SettingState extends State<Setting> {
           leading: GestureDetector(
             onTap: () {
               Navigator.of(context)
-                  .pop(MaterialPageRoute(builder: ((context) => Map())));
+                  .pop(MaterialPageRoute(builder: ((context) => Home())));
             },
             child: Icon(
               Icons.arrow_back,
