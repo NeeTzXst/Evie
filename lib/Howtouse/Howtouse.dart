@@ -48,7 +48,7 @@ class _HowtouseState extends State<Howtouse> {
                   title: 'Welcome to Evie',
                   subtitle: "Let's get to know what you can do with evie",
                   context: context,
-                  name: Map(),
+                  name: Home(),
                 ),
                 HowtousePage(
                   color: Colors.white,
@@ -56,7 +56,7 @@ class _HowtouseState extends State<Howtouse> {
                   title: 'Nerby charging station',
                   subtitle: "Explore charging spot and parking lots around you",
                   context: context,
-                  name: Map(),
+                  name: Home(),
                 ),
                 HowtousePage(
                   color: Colors.white,
@@ -64,7 +64,7 @@ class _HowtouseState extends State<Howtouse> {
                   title: 'Choose your own spots',
                   subtitle: "Up to you. Charging or Parking?",
                   context: context,
-                  name: Map(),
+                  name: Home(),
                 ),
                 HowtousePage(
                   color: Colors.white,
@@ -72,7 +72,7 @@ class _HowtouseState extends State<Howtouse> {
                   title: 'Use QR code',
                   subtitle: "Use this QR Code to access your spots",
                   context: context,
-                  name: Map(),
+                  name: Home(),
                 ),
                 HowtousePage(
                   color: Colors.white,
@@ -81,7 +81,7 @@ class _HowtouseState extends State<Howtouse> {
                   subtitle:
                       "Receive special privileges and great deals from us",
                   context: context,
-                  name: Map(),
+                  name: Home(),
                 ),
               ],
             ),
@@ -135,7 +135,7 @@ class _HowtouseState extends State<Howtouse> {
                             print("Pop to map");
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: ((context) => Map())));
+                                    builder: ((context) => Home())));
                           },
                           child: Container(
                             child: CircleAvatar(
