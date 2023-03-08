@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps/src/splash.dart';
 
-void main() => runApp(home());
+void main() => runApp(Home());
 
-class home extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  State<home> createState() => homeState();
+  State<Home> createState() => HomeState();
 }
 
-class homeState extends State<home> {
+class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
