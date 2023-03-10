@@ -21,9 +21,7 @@ class Home extends StatefulWidget {
 const kGoogleApiKey = 'AIzaSyACIHi_JOm4JFO5EuUQWZ-vuQE-_9U8m00';
 
 class _Home extends State<Home> {
-  late GoogleMapController mapController;
-
-  bool _isMapReady = false;
+  GoogleMapController? mapController;
 
   final LatLng _center = const LatLng(13.751524063317138, 100.4927341283359);
 
@@ -40,7 +38,9 @@ class _Home extends State<Home> {
   PolylinePoints polylinePoints = PolylinePoints();
 
   void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+    setState(() {
+      mapController = controller;
+    });
   }
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -95,7 +95,7 @@ class _Home extends State<Home> {
     return await Geolocator.getCurrentPosition();
   }
 
-  loadData() {
+  Future<void> loadData() async {
     getUserCurrentLocation().then(
       (value) async {
         print("My current location");
@@ -122,10 +122,10 @@ class _Home extends State<Home> {
         CameraPosition cameraPosition = CameraPosition(
             zoom: 14, target: LatLng(value.latitude, value.longitude));
 
-        final GoogleMapController controller = await mapController;
+        final GoogleMapController? controller = await mapController;
 
         controller
-            .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+            ?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
         setState(() {});
       },
     );
@@ -330,10 +330,10 @@ class _Home extends State<Home> {
                           zoom: 17,
                           target: LatLng(value.latitude, value.longitude));
 
-                      final GoogleMapController controller =
+                      final GoogleMapController? controller =
                           await mapController;
 
-                      controller.animateCamera(
+                      controller?.animateCamera(
                           CameraUpdate.newCameraPosition(cameraPosition));
                       setState(() {});
                     },
