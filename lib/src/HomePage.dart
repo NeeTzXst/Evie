@@ -9,6 +9,7 @@ import 'package:google_maps/src/SelectCar.dart';
 import 'package:google_maps/src/Timeremining.dart';
 import 'package:google_maps/src/headerDrawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geocoding/geocoding.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ const kGoogleApiKey = 'AIzaSyACIHi_JOm4JFO5EuUQWZ-vuQE-_9U8m00';
 
 class _Home extends State<Home> {
   late GoogleMapController mapController;
+
+  bool _isMapReady = false;
 
   final LatLng _center = const LatLng(13.751524063317138, 100.4927341283359);
 
@@ -97,8 +100,14 @@ class _Home extends State<Home> {
       (value) async {
         print("My current location");
         print(value.latitude.toString() + " " + value.longitude.toString());
+        List<Placemark> placemarks =
+            await placemarkFromCoordinates(value.latitude, value.longitude);
+        Placemark place = placemarks[0];
+        String address = "${place.name}, ${place.locality}, ${place.country}";
+        print("Current location address: $address");
         print("Desination = " + desLocation.toString());
         print(desla.toString() + " " + deslong.toString());
+        currentLo = address;
         currentla = value.latitude;
         currentlong = value.longitude;
 

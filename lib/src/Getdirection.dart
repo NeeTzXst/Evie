@@ -20,10 +20,12 @@ class GetDirection extends StatefulWidget {
 
 class _GetDirectionState extends State<GetDirection> {
   TextEditingController _controller = TextEditingController();
+  TextEditingController _currenText = TextEditingController();
   var uuid = Uuid();
   String _sessionToken = "122344";
   List<dynamic> _placesList = [];
   bool _isVisible = true;
+  bool _textFromfield = false;
 
   @override
   void initState() {
@@ -100,6 +102,7 @@ class _GetDirectionState extends State<GetDirection> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: TextFormField(
+                controller: _currenText,
                 decoration: InputDecoration(
                   hintText: "Where are you heading from?",
                   border: OutlineInputBorder(
@@ -120,13 +123,9 @@ class _GetDirectionState extends State<GetDirection> {
                 onTap: () {
                   setState(() {
                     _isVisible = true;
+                    _textFromfield = true;
                   });
                 },
-                // inputFormatters: [
-                //   FilteringTextInputFormatter.allow(
-                //     RegExp('[ก-๛]+'),
-                //   ),
-                // ],
                 controller: _controller,
                 decoration: InputDecoration(
                   hintText: "Where are you going to?",
@@ -142,93 +141,102 @@ class _GetDirectionState extends State<GetDirection> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-            //   child: GestureDetector(
-            //     onTap: () {
-            //       print("desla ${desla}");
-            //       print("deslong ${deslong}");
-            //       print("desLocation ${desLocation}");
-            //       Navigator.of(context).push(
-            //         MaterialPageRoute(
-            //           builder: ((context) => Map()),
-            //         ),
-            //       );
-            //     },
-            //     child: Container(
-            //       decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         borderRadius: BorderRadius.circular(18),
-            //       ),
-            //       child: Row(
-            //         children: [
-            //           Icon(
-            //             Icons.near_me,
-            //             size: 40,
-            //             color: Color.fromRGBO(26, 116, 226, 1),
-            //           ),
-            //           SizedBox(
-            //             width: 10,
-            //           ),
-            //           Text(
-            //             "Current station",
-            //             style: GoogleFonts.montserrat(
-            //               textStyle: TextStyle(
-            //                 fontSize: 23,
-            //                 fontWeight: FontWeight.normal,
-            //                 color: Color.fromRGBO(0, 0, 0, 1),
-            //               ),
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // Divider(
-            //   color: Color.fromARGB(255, 148, 146, 146),
-            //   height: 15,
-            //   thickness: 1,
-            //   indent: 30,
-            //   endIndent: 30,
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 30),
-            //   child: GestureDetector(
-            //     onTap: () {},
-            //     child: Container(
-            //       decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         borderRadius: BorderRadius.circular(18),
-            //       ),
-            //       child: Row(
-            //         children: [
-            //           Icon(
-            //             Icons.map,
-            //             size: 40,
-            //             color: Color.fromRGBO(26, 116, 226, 1),
-            //           ),
-            //           SizedBox(
-            //             width: 10,
-            //           ),
-            //           Text(
-            //             "Chose on map",
-            //             style: GoogleFonts.montserrat(
-            //               textStyle: TextStyle(
-            //                 fontSize: 23,
-            //                 fontWeight: FontWeight.normal,
-            //                 color: Color.fromRGBO(0, 0, 0, 1),
-            //               ),
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
+            Visibility(
+              visible: !_textFromfield,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    print("currnt la  $currentla");
+                    print("currnt long $currentlong");
+                    print("currnt Location  $currentLo");
+                    _currenText.text = currentLo;
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.near_me,
+                          size: 40,
+                          color: Color.fromRGBO(26, 116, 226, 1),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Current station",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.normal,
+                              color: Color.fromRGBO(0, 0, 0, 1),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: !_textFromfield,
+              child: Divider(
+                color: Color.fromARGB(255, 148, 146, 146),
+                height: 15,
+                thickness: 1,
+                indent: 30,
+                endIndent: 30,
+              ),
+            ),
+            Visibility(
+              visible: !_textFromfield,
+              child: SizedBox(
+                height: 20,
+              ),
+            ),
+            Visibility(
+              visible: !_textFromfield,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.map,
+                          size: 40,
+                          color: Color.fromRGBO(26, 116, 226, 1),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Chose on map",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.normal,
+                              color: Color.fromRGBO(0, 0, 0, 1),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Visibility(
               visible: _isVisible,
               child: Expanded(
@@ -253,6 +261,7 @@ class _GetDirectionState extends State<GetDirection> {
                                 _placesList[index]['description'];
                             _placesList = [];
                             _isVisible = false;
+                            _textFromfield = false;
                           });
                         },
                         title: Text(_placesList[index]['description']),
@@ -262,18 +271,21 @@ class _GetDirectionState extends State<GetDirection> {
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                print("desla $desla");
-                print("deslong $deslong");
-                print("desLocation $desLocation");
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: ((context) => Home()),
-                  ),
-                );
-              },
-              child: Text("Get Direction"),
+            Visibility(
+              visible: !_isVisible,
+              child: ElevatedButton(
+                onPressed: () {
+                  print("desla $desla");
+                  print("deslong $deslong");
+                  print("desLocation $desLocation");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => Home()),
+                    ),
+                  );
+                },
+                child: Text("Get Direction"),
+              ),
             ),
           ],
         ),
